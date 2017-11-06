@@ -7,9 +7,9 @@ class PokemonController < ApplicationController
     id   = poke_body["id"]
     types = poke_body["types"].map { |type| { name: type["type"]["name"] } }
 
-    res = HTTParty.get("https://api.giphy.com/v1/gifs/search?api_key=#{ENV["GIPHY_KEY"]}&q=#{name}&rating=g")
+    res = HTTParty.get("https://api.giphy.com/v1/gifs/random?api_key=#{ENV["GIPHY_KEY"]}&tag=#{name}")
     body = JSON.parse(res.body)
-    gif_url = body["data"][0]["url"]
+    gif_url = body["data"]["url"]
 
 
     # byebug

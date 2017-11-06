@@ -9,10 +9,12 @@ class PokemonController < ApplicationController
 
     res = HTTParty.get("https://api.giphy.com/v1/gifs/random?api_key=#{ENV["GIPHY_KEY"]}&tag=#{name}")
     body = JSON.parse(res.body)
-    gif_url = body["data"]["url"]
+    if body == { "message" => "Invalid authentication credentials" }
+      gif_url = "Currently unavailable"
+    else
+      gif_url = body["data"]["url"]
+    end
 
-
-    # byebug
     render json:{
       "id:"      => id,
       "name:"    => name,
@@ -20,7 +22,7 @@ class PokemonController < ApplicationController
       "gif_url:" => gif_url
     }
 
-    
+
   end
 
 end

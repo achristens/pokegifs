@@ -19,6 +19,8 @@ class PokemonController < ApplicationController
       "types:"   => types.map {|type| type[:name]},
       "gif_url:" => gif_url
     }
+
+    
   end
 
 end

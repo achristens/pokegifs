@@ -3,4 +3,8 @@ Rails.application.routes.draw do
 
   get 'pokemon/:id' => 'pokemon#show'
 
+  # get '*a', :to => 'pokemon#routing'
+  get 'pokemon/*a', to: 'application#not_found'
+
+
 end
